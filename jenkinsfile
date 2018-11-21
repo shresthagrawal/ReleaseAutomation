@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Deploy') {
             steps{
-                 
+               ansiblePlaybook '/main.yml'  
             }
         }
     }    
