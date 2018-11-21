@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Deploy') {
             steps{
-               ansiblePlaybook credentialsId: 'toor', inventory: '/home/pippin/tmp/inventory.ini', playbook: '/home/pippin/tmp/main.yml'  
+               ansiblePlaybook credentialsId: 'ball', inventory: '/home/pippin/tmp/inventory.ini', playbook: '/home/pippin/tmp/main.yml'  
             }
         }
     }    

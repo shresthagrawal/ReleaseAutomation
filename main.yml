@@ -1,7 +1,7 @@
 ---
 - name: Automate Release Validation Using Jenkins and Ansible 2 
   hosts: targets 
-  #become: yes
+  become: yes
 
   vars:
     ansible_sudo_pass: toor
