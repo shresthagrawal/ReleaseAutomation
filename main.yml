@@ -4,7 +4,7 @@
   become: yes
 
   vars:
-    ansible_sudo_pass: toor
+    ansible_sudo_pass: Rat3King4
 
   tasks:
     - name: Check if container is running
