@@ -1,0 +1,21 @@
+---
+- name: Automate Release Validation Using Jenkins and Ansible 
+  hosts: 127.0.0.1  
+  remote_user: root
+  become: yes
+
+  tasks:
+    - name: install docker-py package
+      pip: name=docker-py
+      
+    - name: Running the container to deploy the code
+      docker_container:
+        name: msbuildMuklavaProject
+        image: msbuild:MuklavaProject
+        state: started
+
+#    - name: Running the container to deploy the code
+#      shell: docker run msbuild:MuklavaProject
+  
+    - name: Check if container is running
+      shell: docker ps 
