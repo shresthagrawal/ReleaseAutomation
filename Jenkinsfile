@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Deploy') {
             steps{
-               ansiblePlaybook '/main.yml'  
+               ansiblePlaybook '/home/pippin/tmp/main.yml'  
             }
         }
     }    
