@@ -1,8 +1,10 @@
 ---
-- name: Automate Release Validation Using Jenkins and Ansible 
-  hosts: 127.0.0.1  
-  remote_user: root
-  become: yes
+- name: Automate Release Validation Using Jenkins and Ansible 2 
+  hosts: targets 
+  #become: yes
+
+  vars:
+    ansible_sudo_pass: toor
 
   tasks:
     - name: Check if container is running
