@@ -1,0 +1,26 @@
+
+###############################Testcase base system logging############################
+---
+
+# checks that the log fies are not empty
+- name: Check if the logs are generated
+  shell: journalctl -aeb
+  register: stdout
+
+# prints the error if log files are empty 
+- debug:
+    msg: "error no log files generated" 
+  when: stdout['stdout_lines'] == ""   
+
+# checks that the last log is of current time
+- name: Check if the logs are generated
+  shell: sudo journalctl -aeb | grep "$(date +"%d %T")"
+  register: stdout
+
+# prints the error if their are no logs of current time  
+- debug:
+    msg: "error in log files " 
+  when: stdout['stdout_lines'] == ""  
+
+
+

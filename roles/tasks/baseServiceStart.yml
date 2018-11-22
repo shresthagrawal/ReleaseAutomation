@@ -18,7 +18,9 @@
 
 - name: Check if any task was removed due to dependency loop
   shell: journalctl -b | grep 'deleted to break ordering cycle'
+  ignore_errors: yes
   register: stdout
+
 
 # prints the error and fails if their is was error 
 - debug:
