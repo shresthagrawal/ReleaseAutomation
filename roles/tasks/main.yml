@@ -1,0 +1,5 @@
+---
+# tasks file for releaseAutomation
+- include_vars: ../vars/main.yml
+- import_tasks: baseServiceStart.yml
+

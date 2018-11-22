@@ -1,0 +1,12 @@
+# script m after script k
+[Unit]
+Description=My Miscellaneous Service m
+After= n.service
+[Service]
+Type=simple
+User=arash
+ExecStart= mkdir /tmp/apple/cat3
+Restart=on-failure
+RestartSec=10
+# Other Restart options: or always, on-abort, etc
+

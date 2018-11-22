@@ -1,0 +1,6 @@
+---
+- name: Automate Release Validation Using Jenkins and Ansible
+  hosts: targets
+  #become: yes
+  roles:
+    - roles

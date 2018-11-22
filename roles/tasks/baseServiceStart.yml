@@ -1,0 +1,30 @@
+###############################Testcase base services start############################
+---
+
+# runs the command tocheck the failed services
+- name: Check if container is running
+  shell: systemctl --all --failed
+  register: stdout
+
+# prints the error and fails if their is was error 
+- debug:
+    var: stdout['stdout_lines']  
+  when: stdout['stdout_lines'] is not superset(noError)  # check if there are zero errors    
+
+#    - fail:
+#        msg: "The test failed. There was problem starting all services properly (Test: base services start)"
+#    when: stdout['stdout_lines'] is not superset(noError)    
+ 
+
+- name: Check if any task was removed due to dependency loop
+  shell: journalctl -b | grep 'deleted to break ordering cycle'
+  register: stdout
+
+# prints the error and fails if their is was error 
+- debug:
+    var: stdout['stdout_lines']  
+  when: stdout['stdout_lines'] != ""  # check if there are zero errors    
+
+#    - fail:
+#        msg: "The test failed. There was problem due to depency loop (Test: base services start)"
+#      when: stdout['stdout_lines'] != "" 

@@ -1,0 +1,20 @@
+# copy file to run 
+sudo cp n.service /lib/systemd/system/
+sudo cp o.service /lib/systemd/system/
+sudo cp p.service /lib/systemd/system/
+
+#start the service
+systemctl start n.service
+systemctl start o.service
+systemctl start p.service
+
+#enable the service to autostart on boot
+systemctl enable n.service
+systemctl enable o.service
+systemctl enable p.service
+
+#reboot to get the error
+reboot
+
+#check for error
+journalctl -f -u n.sevice 
