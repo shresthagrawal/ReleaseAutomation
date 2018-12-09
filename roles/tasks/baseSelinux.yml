@@ -1,0 +1,12 @@
+###############################Testcase base selinux############################
+---
+# check the status of SE Linux
+- name: 'status of SELinux: getenforce'
+  shell:  'getenforce'
+  register: result
+- debug:
+    msg: "SELinux working properly."
+  when: result.stdout == "Enforcing"
+- fail:
+    msg: "SELinux not working properly."
+  when: result.stdout != "Enforcing"

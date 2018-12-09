@@ -1,0 +1,19 @@
+---
+# Performing Testcase base selinux test on Fedora 29 using Vagrant 
+- name: Testcase base selinux
+  hosts: all
+
+  vars:
+    service_name: 'sssd'
+  become: yes
+
+  tasks:
+    - name: 'status of SELinux: getenforce'
+      shell:  'getenforce'
+      register: result
+    - debug:
+        msg: "SELinux working properly."
+      when: result.stdout == "Enforcing"
+    - fail:
+        msg: "SELinux not working properly."
+      when: result.stdout != "Enforcing"

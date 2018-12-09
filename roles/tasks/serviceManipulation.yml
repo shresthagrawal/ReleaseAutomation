@@ -1,0 +1,113 @@
+###############################Service Manipulation############################
+---
+# Test 1 : Stoped and Disabled
+- service:
+    name: "{{service_name}}"
+    enabled: no
+    state: stopped
+
+# Reboot the Device 
+- reboot:        
+
+- shell:  "systemctl status {{service_name}}.service | grep Active:"
+  register: result
+- assert:
+    that: result.stdout[11:19] == "inactive"   
+    msg: "Unable to stop service"
+
+- shell:  'systemctl status {{service_name}}.service | grep "disabled;"'
+  register: result
+- assert:
+    that: result.stdout_lines|length == 1  
+    msg: "Unable to disable service"  
+
+- debug:
+    msg: "Disabled and inactive (not running)"
+
+ 
+
+# Test 2 : Start and Disabled
+- service:
+    name: "{{service_name}}"
+    state: started
+
+- shell:  "systemctl status {{service_name}}.service | grep Active:"
+  register: result
+- assert:
+    that: result.stdout[11:17] == "active"   
+    msg: "Unable to start service"
+
+- shell:  'systemctl status {{service_name}}.service | grep "disabled;"'
+  register: result
+- assert:
+    that: result.stdout_lines|length == 1  
+    msg: "Unable to disable service"
+
+- debug:
+    msg: "Disabled and active (running)" 
+
+# Test 3 : Stop and Disabled
+- service:
+    name: "{{service_name}}"
+    state: stopped
+
+- shell:  "systemctl status {{service_name}}.service | grep Active:"
+  register: result
+- assert:
+    that: result.stdout[11:19] == "inactive"   
+    msg: "Unable to stop service"
+
+- shell:  'systemctl status {{service_name}}.service | grep "disabled;"'
+  register: result
+- assert:
+    that: result.stdout_lines|length == 1  
+    msg: "Unable to disable service"
+
+- debug:
+    msg: "Disabled and inactive (not running)"
+
+# Test 4 : Stop and Enabled
+- service:
+    name: "{{service_name}}"
+    enabled: yes
+
+# Reboot the Device 
+- reboot:    
+
+- shell:  "systemctl status {{service_name}}.service | grep Active:"
+  register: result
+- assert:
+    that: result.stdout[11:17] == "active"   
+    msg: "Unable to start service"
+
+- shell:  'systemctl status {{service_name}}.service | grep "enabled"'
+  register: result
+- assert:
+    that: result.stdout_lines|length == 1  
+    msg: "Unable to enable service"
+
+- debug:
+    msg: "Enabled and active (running)"
+
+# Test 5 : Stop and Disable
+- service:
+    name: "{{service_name}}"
+    enabled: no
+     
+# Reboot the Device 
+- reboot:    
+
+- shell:  "systemctl status {{service_name}}.service | grep Active:"
+  register: result
+- assert:
+    that: result.stdout[11:19] == "inactive"   
+    msg: "Unable to stop service"
+
+- shell:  'systemctl status {{service_name}}.service | grep "disabled;"'
+  register: result
+- assert:
+    that: result.stdout_lines|length == 1  
+    msg: "Unable to enable service"
+
+- debug:
+    msg: "Disabled and inactive (not running)"

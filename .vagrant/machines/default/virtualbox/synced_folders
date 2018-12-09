@@ -1,0 +1,1 @@
+{"rsync":{"/vagrant":{"type":"rsync","guestpath":"/vagrant","hostpath":"/home/arash/Desktop/GoogleCodeIn/AutomationUsingAnsibleII/ReleaseAutomation","disabled":false,"__vagrantfile":true,"owner":"vagrant","group":"vagrant"}}}

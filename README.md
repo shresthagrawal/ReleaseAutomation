@@ -8,3 +8,10 @@ https://fedoraproject.org/wiki/QA:Testcase_base_system_logging
 To run this boot the fedora release you want to test and change the IP and the SSH key in the inventory.ini file
 
 kudos
+
+# to start vagrant 
+vagrant up
+# to test vagrant 
+vgrant ssh
+# to halt vagrant
+vagrant halt
