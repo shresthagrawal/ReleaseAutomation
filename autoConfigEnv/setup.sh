@@ -33,7 +33,7 @@ Port=${Port#*'Port '}
 echo $HostName:$Port
 
 
-#Create an inventory manually 
+#Creating an inventory to use vagrant manually 
 /bin/cat <<EOM >../vagrantInventory.ini
 [Vagrant]
 $HostName         ansible_port=$Port     ansible_user=vagrant     ansible_ssh_private_key_file='~/.vagrant.d/insecure_private_key'     ansible_python_interpreter=/usr/bin/python3
@@ -44,5 +44,5 @@ echo '##############################################################'
 echo 'Use either of the below methods to run the ansible playbook:'
 echo 'cd releaseAutomationEnv; vagrant provision;'
 echo "ansible-playbook $1 -i vagrantInventory.ini"
-#vagrant provision
+
 
