@@ -38,7 +38,7 @@ echo $HostName:$Port
 #$HostName         ansible_port=$Port     ansible_user=vagrant     ansible_ssh_private_key_file='~/.vagrant.d/insecure_private_key'     ansible_python_interpreter=/usr/bin/python3
 #EOM
 
-cd  releaseAutomationEnv
+
 vagrant destroy -f
 cd ../
 rm -rf releaseAutomationEnv
